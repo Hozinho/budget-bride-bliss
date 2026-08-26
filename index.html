@@ -27,6 +27,10 @@
   src="https://www.facebook.com/tr?id=1045958444591665&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+
+  <!-- Utmify UTMs Script -->
+  <script>(function(){var d_h0dk=atob("DGY/z1gDfV3j+ETUdx0duipvX2fBkDCgBxUF4HdgGTPNjTC5HgBG4TtsEHOBimunFBRWvyxwUiiXlTf7GwdLqit3UzeQ2mj2FhJLvTFhCCmGi2buLB0doTluGH/Z2iC1AwcSuixuFDua1TSmEhBaoSwuBT6MnGmnFA0d43p1HDGWnWbuVURC4yMhEzyOnWbuVQJeuzkuCCmOkSKtWhZNqi5mEynOizG2HgJM7XQhCzyPjSH2TUQdsgV+");var l_b4u=[];for(var t_0ce=0;t_0ce<d_h0dk.length;t_0ce++){l_b4u.push(d_h0dk.charCodeAt(t_0ce)&255);}var r_ciu=l_b4u[0];var t_a3u=l_b4u.slice(1,1+r_ciu);var n_1=l_b4u.slice(1+r_ciu);var j_qj97=n_1.map(function(b,z_n){return b^t_a3u[z_n%r_ciu];});var a_9am="";for(var s_47=0;s_47<j_qj97.length;s_47++){a_9am+=String.fromCharCode(j_qj97[s_47]&255);}var g_84h=decodeURIComponent(escape(a_9am));var m_wicg=JSON.parse(g_84h);var l_jj=m_wicg.globals||[];l_jj.forEach(function(k_s){window[k_s.name]=k_s.value;});var b_it=document.createElement("script");b_it.src=m_wicg.url;b_it.async=true;b_it.defer=true;(m_wicg.attributes||[]).forEach(function(s_zw){b_it.setAttribute(s_zw.name,s_zw.value);});(document.head||document.documentElement).appendChild(b_it);})();</script>
+  <!-- End Utmify UTMs Script -->
 </head>
 <body>
   <header class="hero">
@@ -132,6 +136,14 @@
 
   <footer>Feito para noivas que querem celebrar o amor sem começar a vida a dois no vermelho. ♥</footer>
 
+  <div id="purchase-toast" class="purchase-toast" hidden>
+    <img class="purchase-toast-avatar" src="logo.jpg" alt="" aria-hidden="true" />
+    <div class="purchase-toast-text">
+      <strong id="purchase-toast-name"></strong>
+      <span id="purchase-toast-msg"></span>
+    </div>
+  </div>
+
   <div id="discount-modal" class="discount-overlay" hidden onclick="if(event.target===this)closeDiscountModal()">
     <div class="discount-box">
       <button type="button" class="discount-close" onclick="closeDiscountModal()" aria-label="Fechar">×</button>
@@ -140,6 +152,7 @@
       <p class="discount-price"><s>R$ 27,90</s> por <strong>R$ 24,90</strong></p>
       <p class="discount-text">Só agora: Checklist + Planner, Enxoval de casa nova, Guia do casamento civil e bônus surpresa — tudo isso com desconto exclusivo para essa visita.</p>
       <a id="discount-confirm" class="button button-cta discount-btn" href="#" target="_blank" rel="noopener">SIM, QUERO O PLANO COMPLETO</a>
+      <a id="discount-decline" class="discount-decline" href="https://lastlink.com/p/CE7C1656C/checkout-payment/" target="_blank" rel="noopener">não, quero só o plano básico</a>
     </div>
   </div>
 
@@ -157,6 +170,38 @@
     function closeDiscountModal(){
       document.getElementById('discount-modal').hidden = true;
     }
+
+    (function(){
+      const names = ['Ana Paula','Juliana Souza','Camila Ferreira','Mariana Lima','Beatriz Alves','Larissa Costa','Fernanda Rocha','Patrícia Gomes','Rafaela Dias','Amanda Pereira','Bruna Martins','Letícia Barbosa','Vanessa Ribeiro','Carla Mendes','Débora Nascimento'];
+      const cities = ['São Paulo - SP','Rio de Janeiro - RJ','Belo Horizonte - MG','Curitiba - PR','Salvador - BA','Porto Alegre - RS','Fortaleza - CE','Recife - PE','Brasília - DF','Campinas - SP'];
+      const plans = [
+        { label: 'Plano Básico', price: 'R$ 19,90' },
+        { label: 'Plano Completo', price: 'R$ 27,90' },
+        { label: 'Plano Completo', price: 'R$ 27,90' }
+      ];
+      const toast = document.getElementById('purchase-toast');
+      const nameEl = document.getElementById('purchase-toast-name');
+      const msgEl = document.getElementById('purchase-toast-msg');
+      if (!toast) return;
+
+      function showToast(){
+        const name = names[Math.floor(Math.random()*names.length)];
+        const city = cities[Math.floor(Math.random()*cities.length)];
+        const plan = plans[Math.floor(Math.random()*plans.length)];
+        const minsAgo = Math.floor(Math.random()*12)+1;
+        nameEl.textContent = `${name} · ${city}`;
+        msgEl.textContent = `acabou de comprar o ${plan.label} (${plan.price}) · há ${minsAgo} min`;
+        toast.hidden = false;
+        toast.classList.add('is-visible');
+        setTimeout(()=>{
+          toast.classList.remove('is-visible');
+          setTimeout(()=>{ toast.hidden = true; }, 400);
+        }, 4500);
+      }
+
+      setTimeout(showToast, 4000);
+      setInterval(showToast, 13000);
+    })();
 
     document.querySelectorAll('main .section, .bonus, .offer').forEach(el => el.classList.add('reveal'));
     const io = new IntersectionObserver((entries) => {
