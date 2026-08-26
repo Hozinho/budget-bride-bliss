@@ -142,6 +142,7 @@
       <strong id="purchase-toast-name"></strong>
       <span id="purchase-toast-msg"></span>
     </div>
+    <button type="button" class="purchase-toast-close" id="purchase-toast-close" aria-label="Fechar">×</button>
   </div>
 
   <div id="discount-modal" class="discount-overlay" hidden onclick="if(event.target===this)closeDiscountModal()">
@@ -172,17 +173,22 @@
     }
 
     (function(){
-      const names = ['Ana Paula','Juliana Souza','Camila Ferreira','Mariana Lima','Beatriz Alves','Larissa Costa','Fernanda Rocha','Patrícia Gomes','Rafaela Dias','Amanda Pereira','Bruna Martins','Letícia Barbosa','Vanessa Ribeiro','Carla Mendes','Débora Nascimento'];
+      const names = ['Ana Paula','Juliana Souza','Camila Ferreira','Mariana Lima','Beatriz Alves','Larissa Costa','Fernanda Rocha','Patrícia Gomes','Rafaela Dias','Amanda Pereira','Bruna Martins','Letícia Barbosa','Vanessa Ribeiro','Carla Mendes','Débora Nascimento','Gabriela Souza','Isabela Cardoso','Priscila Teixeira','Renata Azevedo','Talita Moreira','Aline Correia','Bianca Freitas','Carolina Pinto','Daniela Cavalcanti','Elaine Monteiro','Flávia Nogueira','Gisele Duarte','Helena Castro','Ingrid Farias','Jéssica Andrade','Karina Vieira','Luana Barros','Michele Campos','Natália Rezende','Otávia Batista','Paula Siqueira','Raquel Moura','Simone Araújo','Tatiane Melo','Vitória Lopes','Yasmin Ramos'];
       const cities = ['São Paulo - SP','Rio de Janeiro - RJ','Belo Horizonte - MG','Curitiba - PR','Salvador - BA','Porto Alegre - RS','Fortaleza - CE','Recife - PE','Brasília - DF','Campinas - SP'];
-      const plans = [
-        { label: 'Plano Básico', price: 'R$ 19,90' },
-        { label: 'Plano Completo', price: 'R$ 27,90' },
-        { label: 'Plano Completo', price: 'R$ 27,90' }
-      ];
+      const plans = ['Plano Básico', 'Plano Completo', 'Plano Completo'];
       const toast = document.getElementById('purchase-toast');
       const nameEl = document.getElementById('purchase-toast-name');
       const msgEl = document.getElementById('purchase-toast-msg');
+      const closeBtn = document.getElementById('purchase-toast-close');
       if (!toast) return;
+      let hideTimer, removeTimer;
+
+      function hideToast(){
+        clearTimeout(hideTimer);
+        clearTimeout(removeTimer);
+        toast.classList.remove('is-visible');
+        setTimeout(()=>{ toast.hidden = true; }, 400);
+      }
 
       function showToast(){
         const name = names[Math.floor(Math.random()*names.length)];
@@ -190,14 +196,16 @@
         const plan = plans[Math.floor(Math.random()*plans.length)];
         const minsAgo = Math.floor(Math.random()*12)+1;
         nameEl.textContent = `${name} · ${city}`;
-        msgEl.textContent = `acabou de comprar o ${plan.label} (${plan.price}) · há ${minsAgo} min`;
+        msgEl.textContent = `acabou de comprar o ${plan} · há ${minsAgo} min`;
         toast.hidden = false;
         toast.classList.add('is-visible');
-        setTimeout(()=>{
+        hideTimer = setTimeout(()=>{
           toast.classList.remove('is-visible');
-          setTimeout(()=>{ toast.hidden = true; }, 400);
+          removeTimer = setTimeout(()=>{ toast.hidden = true; }, 400);
         }, 4500);
       }
+
+      if (closeBtn) closeBtn.addEventListener('click', hideToast);
 
       setTimeout(showToast, 4000);
       setInterval(showToast, 13000);
