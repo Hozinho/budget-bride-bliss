@@ -135,8 +135,8 @@
       <div class="section narrow">
         <p class="offer-kicker">ESCOLHA A MELHOR OFERTA PARA VOCÊ:</p>
         <div class="offers">
-          <article class="offer"><span>PLANO BÁSICO</span><strong>R$ 19,90</strong><small>à vista</small><a class="offer-btn" href="https://lastlink.com/p/CE7C1656C/checkout-payment/" data-discount-href="https://lastlink.com/p/C4B7D3036/checkout-payment/" data-plan="Plano Básico" onclick="return openDiscountModal(event)">QUERO ESSA OPÇÃO</a><p>✓ E-book Segredos do Econômico<br>✓ 1 ano de acesso<br>✓ Atualizações</p></article>
-          <article class="offer featured"><i>POR APENAS R$8 A MAIS</i><span>PLANO COMPLETO</span><strong>R$ 27,90</strong><small>ou parcelado no cartão</small><a class="offer-btn" href="https://lastlink.com/p/CDC59DCB7/checkout-payment/" target="_blank" rel="noopener" data-plan="Plano Completo" onclick="logPurchaseClick(this)">SIM! QUERO O PLANO COMPLETO</a><p>✓ E-book completo<br>✓ Checklist + Planner<br>✓ Enxoval de casa nova<br>✓ Guia do casamento civil<br>✓ Bônus surpresa<br>✓ 7 dias de garantia</p></article>
+          <article class="offer"><span>PLANO BÁSICO</span><strong>R$ 19,90</strong><small>à vista</small><a class="offer-btn" href="https://lastlink.com/p/CE7C1656C/checkout-payment/" data-discount-href="https://lastlink.com/p/C4B7D3036/checkout-payment/" onclick="return openDiscountModal(event)">QUERO ESSA OPÇÃO</a><p>✓ E-book Segredos do Econômico<br>✓ 1 ano de acesso<br>✓ Atualizações</p></article>
+          <article class="offer featured"><i>POR APENAS R$8 A MAIS</i><span>PLANO COMPLETO</span><strong>R$ 27,90</strong><small>ou parcelado no cartão</small><a class="offer-btn" href="https://lastlink.com/p/CDC59DCB7/checkout-payment/" target="_blank" rel="noopener">SIM! QUERO O PLANO COMPLETO</a><p>✓ E-book completo<br>✓ Checklist + Planner<br>✓ Enxoval de casa nova<br>✓ Guia do casamento civil<br>✓ Bônus surpresa<br>✓ 7 dias de garantia</p></article>
         </div>
       </div>
     </section>
@@ -192,36 +192,17 @@
       <h2>Ganhe <span>desconto</span> no Plano Completo!</h2>
       <p class="discount-price"><s>R$ 27,90</s> por <strong>R$ 24,90</strong></p>
       <p class="discount-text">Só agora: Checklist + Planner, Enxoval de casa nova, Guia do casamento civil e bônus surpresa — tudo isso com desconto exclusivo para essa visita.</p>
-      <a id="discount-confirm" class="button button-cta discount-btn" href="#" target="_blank" rel="noopener" data-plan="Plano Completo (desconto)" onclick="logPurchaseClick(this)">SIM, QUERO O PLANO COMPLETO</a>
-      <a id="discount-decline" class="discount-decline" href="https://lastlink.com/p/CE7C1656C/checkout-payment/" target="_blank" rel="noopener" data-plan="Plano Básico (recusou desconto)" onclick="logPurchaseClick(this)">não, quero só o plano básico</a>
+      <a id="discount-confirm" class="button button-cta discount-btn" href="#" target="_blank" rel="noopener">SIM, QUERO O PLANO COMPLETO</a>
+      <a id="discount-decline" class="discount-decline" href="https://lastlink.com/p/CE7C1656C/checkout-payment/" target="_blank" rel="noopener">não, quero só o plano básico</a>
     </div>
   </div>
 
   <script>
-    const SUPABASE_URL = 'https://lennpgesswmfvicuaudo.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxlbm5wZ2Vzc3dtZnZpY3VhdWRvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc3OTI2MzcsImV4cCI6MjEwMzM2ODYzN30.6dZ6vz4sr5RrtJcIri8o7sw6I-iU0r8j_ePklOEPNJk';
-
-    function logPurchaseClick(el){
-      const plan = el.getAttribute('data-plan') || 'desconhecido';
-      const destinationUrl = el.getAttribute('href') || '';
-      fetch(`${SUPABASE_URL}/rest/v1/purchase_clicks`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ plan, destination_url: destinationUrl })
-      }).catch(()=>{});
-    }
-
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href'));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'})}}));
 
     function openDiscountModal(e){
       e.preventDefault();
       const link = e.currentTarget;
-      logPurchaseClick(link);
       const discountHref = link.getAttribute('data-discount-href');
       document.getElementById('discount-confirm').setAttribute('href', discountHref);
       document.getElementById('discount-modal').hidden = false;
