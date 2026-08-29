@@ -43,6 +43,17 @@
 </head>
 <body>
   <header class="hero">
+    <div class="hero-mobile">
+      <p class="hero-mobile-label">CASE GASTANDO MENOS DE R$6 MIL</p>
+      <h1>Descubra o Método P.S.N. para cortar gastos desnecessários, negociar melhor com fornecedores e planejar seu casamento sem abrir mão do que realmente importa.</h1>
+      <ul class="hero-benefits">
+        <li>Saiba onde economizar</li>
+        <li>Evite gastos que estouram o orçamento</li>
+        <li>Planeje cada etapa com mais segurança</li>
+      </ul>
+      <a class="button button-cta hero-mobile-cta" href="#oferta">QUERO PLANEJAR MEU CASAMENTO</a>
+      <div class="hero-mobile-proof"><span class="proof-mark">✓</span><p><strong>Um caso real:</strong> casamento de <b>R$ 6.697,70 para 150 convidados</b>, com mais de 30 pessoas envolvidas nos preparativos.</p></div>
+    </div>
     <div class="hero-inner">
       <p class="hero-badge">✦ Método comprovado por milhares de noivas ✦</p>
       <h1>Seu Casamento com Menos<br>de <em>6 mil reais</em></h1>
@@ -128,7 +139,7 @@
         </li>
       </ol>
       <div class="highlight">Comprando nos dias:</div>
-      <h3>22, 23 e 24 de Agosto você ganha alguns bônus extras.</h3>
+      <h3>Na oferta completa, você recebe bônus extras para organizar tudo com mais segurança.</h3>
     </section>
 
     <!-- 5. Bônus -->
@@ -233,12 +244,6 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
   <script>
-    document.querySelectorAll('body *').forEach(el => {
-      if (el.children.length === 0) {
-        el.textContent = el.textContent
-          .replaceAll('22, 23 e 24 de Agosto você ganha alguns bônus extras.', 'Na oferta completa, você recebe bônus extras para organizar tudo com mais segurança.');
-      }
-    });
     const introBold = document.querySelector('.intro .bold');
     if (introBold) introBold.insertAdjacentHTML('beforebegin', '<p>Em 2022, esse método ajudou a realizar um casamento de <b>R$6.697,70 para 150 convidados</b>, com mais de 30 pessoas envolvidas nos preparativos.</p>');
   </script>
