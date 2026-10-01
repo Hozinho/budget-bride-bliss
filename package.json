@@ -1,0 +1,24 @@
+{
+  "name": "casamento-economico",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hozinho/budget-bride-bliss.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Hozinho/budget-bride-bliss/issues"
+  },
+  "homepage": "https://github.com/Hozinho/budget-bride-bliss#readme",
+  "dependencies": {
+    "@microsoft/clarity": "^1.0.2"
+  }
+}
